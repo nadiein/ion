@@ -1,0 +1,41 @@
+<form 
+    #loginForm="ngForm"
+    (ngSubmit)="loginForm.valid && onSubmit(loginForm)">
+    <input 
+        type="text"
+        #email="ngModel"
+        [(ngModel)]="userService.selectedUser.email"
+        name="email"
+        placeholder="Email"
+        required 
+        [pattern]="emailRegex"
+        [ngClass]="{'invalid-textbox' :loginForm.submitted && !email.valid }">
+    <div *ngIf="loginForm.submitted && email.errors">
+        <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+        <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+    </div>
+    <input
+        type="password"
+        #password="ngModel"
+        [(ngModel)]="userService.selectedUser.password"
+        name="password"
+        placeholder="Password"
+        minlength="4"
+        required 
+        [ngClass]="{'invalid-textbox' :loginForm.submitted && !password.valid }">
+    <div *ngIf="loginForm.submitted && password.errors">
+        <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+        <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+    </div>
+    <button class="btn btn-primary">Log In</button>
+</form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+    Logged in successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+</div>
