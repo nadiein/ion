@@ -37,6 +37,7 @@ userSchema.pre('save', function (next) {
 
 userSchema.pre('update', function (next) {
     // TODO: write method to update user;
+    https://mongoosejs.com/docs/middleware.html
 });
 
 userSchema.methods.verifyPassword = function (password) {
