@@ -53,6 +53,8 @@ module.exports.userProfile = (req, res, next) => {
 }
 
 module.exports.updateProfile = (req, res, next) => {
+    console.log(req.body)
+    // TODO: findALL user get it by id and update mongo --debug
     // TODO: make method to update user profile
     // TODO: read this https://github.com/jaredhanson/passport/issues/208
     // TODO: https://stackoverflow.com/questions/42086570/updating-a-user-record-in-passport-mongodb
