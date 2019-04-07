@@ -11,12 +11,15 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { LogInComponent } from './user/log-in/log-in.component';
-//routes
-import { appRoutes } from './routes';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { UserService } from './shared/user.service';
 import { EditUserProfileComponent } from './edit-user-profile/edit.user.profile.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { CreateArticleComponent } from './create-article/create.article.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+//routes
+import { AppRoutes } from './routes';
+//services
+import { UserService } from './shared/user.service';
 
 @NgModule({
     declarations: [
@@ -26,12 +29,14 @@ import { EditUserProfileComponent } from './edit-user-profile/edit.user.profile.
         LogInComponent,
         PagenotfoundComponent,
         UserProfileComponent,
-        EditUserProfileComponent
+        EditUserProfileComponent,
+        CreateArticleComponent,
+        ArticlesComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(AppRoutes),
         HttpClientModule
     ],
     providers: [

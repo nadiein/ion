@@ -1,0 +1,49 @@
+<form 
+    #createArticleForm="ngForm"
+    (ngSubmit)="createArticleForm.valid && onSubmit(createArticleForm)">
+    <input
+        type="text"
+        #title="ngModel"
+        [(ngModel)]="articleService.article.title"
+        name="title"
+        placeholder="Title"
+        required 
+        [ngClass]="{'invalid-textbox' :createArticleForm.submitted && !title.valid }">
+    <div *ngIf="createArticleForm.submitted && !title.valid">
+        <label class="validation-message">This field is required.</label>
+    </div>
+    <input
+        type="text"
+        #description="ngModel"
+        [(ngModel)]="articleService.article.description"
+        name="description"
+        placeholder="Description"
+        required 
+        [ngClass]="{'invalid-textbox' :createArticleForm.submitted && !description.valid }">
+    <div *ngIf="createArticleForm.submitted && !description.valid">
+        <label class="validation-message">This field is required.</label>
+    </div>
+    <input
+        type="text"
+        #image="ngModel"
+        [(ngModel)]="articleService.article.image"
+        name="image"
+        placeholder="Image"
+        required 
+        [ngClass]="{'invalid-textbox' :createArticleForm.submitted && !image.valid }">
+    <div *ngIf="createArticleForm.submitted && !image.valid">
+        <label class="validation-message">This field is required.</label>
+    </div>
+    <button class="btn btn-primary">Save</button>
+    <button class="btn btn-primary" routerLink="/userProfile">Back</button>
+</form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+    Created successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+</div>

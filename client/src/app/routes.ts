@@ -1,3 +1,4 @@
+import { CreateArticleComponent } from './create-article/create.article.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit.user.profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -6,12 +7,14 @@ import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { LogInComponent } from './user/log-in/log-in.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ArticlesComponent } from './articles/articles.component';
 
-export const appRoutes: Routes = [
+export const AppRoutes: Routes = [
     {
         path: 'signup',
         component: UserComponent,
-        children: [{ path: '', component: SignUpComponent }]
+        children: [{ path: '', component: SignUpComponent }],
+        canActivate: [AuthGuard]
     },
     {
         path: 'login',
@@ -34,7 +37,17 @@ export const appRoutes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: '**',
-        component: PagenotfoundComponent
-    }
+        path: 'createArticle',
+        component: CreateArticleComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'articles',
+        component: ArticlesComponent,
+        canActivate: [AuthGuard]
+    },
+    // {
+    //     path: '**',
+    //     component: PagenotfoundComponent
+    // }
 ];
