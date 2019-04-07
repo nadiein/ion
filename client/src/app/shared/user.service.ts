@@ -9,6 +9,7 @@ import { User } from './user.model';
 })
 export class UserService {
     selectedUser: User = {
+        _id: '',
         fullName: '',
         email: '',
         password: ''
@@ -31,7 +32,7 @@ export class UserService {
     }
 
     updateUserProfile(user: User) {
-        return this.http.post(environment.apiBaseUrl + '/updateProfile', user);
+        return this.http.put(environment.apiBaseUrl + '/updateProfile', user);
     }
 
     setToken(token: string) {

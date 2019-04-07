@@ -46,16 +46,22 @@ module.exports.userProfile = (req, res, next) => {
             if (!user) {
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             } else {
-                return res.status(200).json({ status: true, user: _.pick(user, ['fullName', 'email']) });
+                return res.status(200).json({ status: true, user: _.pick(user, ['_id', 'fullName', 'email']) });
             }
         }
     );
 }
 
 module.exports.updateProfile = (req, res, next) => {
-    console.log(req.body)
-    // TODO: findALL user get it by id and update mongo --debug
-    // TODO: make method to update user profile
-    // TODO: read this https://github.com/jaredhanson/passport/issues/208
-    // TODO: https://stackoverflow.com/questions/42086570/updating-a-user-record-in-passport-mongodb
+    User.update({ _id: req.body._id }, { fullName: req.body.fullName, email: req.body.email }, (err, doc) => {
+        if (!err) {
+            res.send(doc);
+        } else {
+            if (err.code == 11000) {
+                res.status(422).send(['Duplicate email adrress found.']);
+            } else {
+                return next(err);
+            }
+        }
+    })
 }

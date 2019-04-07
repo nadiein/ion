@@ -19,32 +19,32 @@ import { UserService } from './shared/user.service';
 import { EditUserProfileComponent } from './edit-user-profile/edit.user.profile.component';
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      UserComponent,
-      SignUpComponent,
-      LogInComponent,
-      PagenotfoundComponent,
-      UserProfileComponent,
-      EditUserProfileComponent
-   ],
-   imports: [
-      BrowserModule,
-      FormsModule,
-      RouterModule.forRoot(appRoutes),
-      HttpClientModule
-   ],
-   providers: [
-      {
-         provide: HTTP_INTERCEPTORS,
-         useClass: AuthInterceptor,
-         multi: true
-      },
-      AuthGuard,
-      UserService
-   ],
-   bootstrap: [
-      AppComponent
-   ]
+    declarations: [
+        AppComponent,
+        UserComponent,
+        SignUpComponent,
+        LogInComponent,
+        PagenotfoundComponent,
+        UserProfileComponent,
+        EditUserProfileComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        RouterModule.forRoot(appRoutes),
+        HttpClientModule
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        },
+        AuthGuard,
+        UserService
+    ],
+    bootstrap: [
+        AppComponent
+    ]
 })
 export class AppModule { }

@@ -24,6 +24,7 @@ export class LogInComponent implements OnInit {
 
     onSubmit(form: NgForm) {
         this.userService.auth(form.value).subscribe(res => {
+            console.log(res)
             this.userService.setToken(res['token']);
             this.router.navigateByUrl('/userProfile');
         }, error => {
@@ -33,11 +34,12 @@ export class LogInComponent implements OnInit {
 
     resetForm(form: NgForm) {
         this.userService.selectedUser = {
-            fullName: "",
-            email: "",
-            password: ""
+            _id: '',
+            fullName: '',
+            email: '',
+            password: ''
         };
         form.resetForm();
-        this.serverErrorMessages = "";
+        this.serverErrorMessages = '';
     }
 }
