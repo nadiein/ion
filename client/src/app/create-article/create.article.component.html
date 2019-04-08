@@ -1,6 +1,7 @@
 <form 
     #createArticleForm="ngForm"
-    (ngSubmit)="createArticleForm.valid && onSubmit(createArticleForm)">
+    (ngSubmit)="createArticleForm.valid && onSubmit(createArticleForm)"
+    enctype="multipart/form-data">
     <input
         type="text"
         #title="ngModel"
@@ -24,7 +25,7 @@
         <label class="validation-message">This field is required.</label>
     </div>
     <input
-        type="text"
+        type="file"
         #image="ngModel"
         [(ngModel)]="articleService.article.image"
         name="image"

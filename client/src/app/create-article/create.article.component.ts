@@ -23,12 +23,12 @@ export class CreateArticleComponent implements OnInit {
 
     onSubmit(form: NgForm) {
         console.log('article => ', form.value)
-        // this.articleService.postArticle(form).subscribe(res => {
-        //     console.log(res)
-        //     this.router.navigateByUrl('/userProfile');
-        // }, error => {
-        //     this.serverErrorMessages = error.error.message;
-        // });
+        this.articleService.postArticle(form.value).subscribe(res => {
+            console.log(res)
+            this.router.navigateByUrl('/userProfile');
+        }, error => {
+            this.serverErrorMessages = error.error.message;
+        });
     }
 
 }

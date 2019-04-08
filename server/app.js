@@ -7,13 +7,17 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const rtsIndex = require('./routes/index.router');
+const multer = require('multer');
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(multer({dest: './uploads/'}).single('image'));
 app.use(cors());
 app.use(passport.initialize());
 app.use('/api', rtsIndex);
+
 
 app.use((err, req, res, next) => {
     if (err.name === 'ValidationError') {

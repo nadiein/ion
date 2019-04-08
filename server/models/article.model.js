@@ -14,7 +14,8 @@ let ArticleSchema = new mongoose.Schema({
         type: String,
     },
     image: {
-        type: String
+        binData: Buffer,
+        contentType: String
     },
     created: {
         type: Date,

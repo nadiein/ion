@@ -1,15 +1,12 @@
 const mongoose = require('mongoose');
+const fs = require('fs');
 const _ = require('lodash');
 
 let Article = mongoose.model('Article');
 
 module.exports.create = (req, res, next) => {
-    let article = new Article();
-    article.title = req.body.title;
-    article.description = req.body.description;
-    article.image = req.body.image;
-    article.created = req.body.created;
-    article.updated = req.body.updated;
 
-    console.log('Article req => ', req.body)
+        console.log('Article req file => ', req.file)
+        console.log('Article req files => ', req.files)
+
 }
