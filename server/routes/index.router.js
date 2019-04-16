@@ -4,18 +4,14 @@ const ctrlUser = require('../controllers/user.controller');
 const ctrlArticle = require('../controllers/article.controller');
 const jwtHelper = require('../config/jwtHelper');
 const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: function (req, res, cb) {
-        cb(null, 'uploads/')
-    }
-});
-const upload = multer({ storage: storage });
+const UPLOAD_PATH = 'uploads';
+const upload = multer({ dest: `${UPLOAD_PATH}/` }); // multer configuration
 
 router.post('/register', ctrlUser.register);
 router.post('/authenticate', ctrlUser.authenticate);
 router.get('/userProfile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.put('/updateProfile', ctrlUser.updateProfile);
 
-router.post('/createArticle', upload.any(), ctrlArticle.create);
+router.post('/createArticle', upload.single('image'), ctrlArticle.create);
 
 module.exports = router;

@@ -9,19 +9,11 @@ import { Article } from './article.model';
 })
 export class ArticleService {
 
-    article: Article = {
-        id: null,
-        title: '',
-        description: '',
-        image: '',
-        created: new Date(),
-        updated: new Date()
-    }
-
     constructor(private http: HttpClient) { }
 
-    postArticle(article: Article){
-        return this.http.post(environment.apiBaseUrl + '/createArticle', article);
+    postArticle(form) {
+        console.log('article => ', form)
+        return this.http.post(environment.apiBaseUrl + '/createArticle', form);
     }
 
 }
