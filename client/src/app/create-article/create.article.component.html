@@ -26,11 +26,7 @@
     </div>
     <input
         type="file"
-        #image="ngModel"
-        [(ngModel)]="article.image"
         name="image"
-        placeholder="Image"
-        [ngClass]="{'invalid-textbox' :createArticleForm.submitted && !image.valid }"
         (change)="onInputFileChange($event)">
     <button class="btn btn-primary">Save</button>
     <button class="btn btn-primary" routerLink="/userProfile">Back</button>

@@ -11,9 +11,11 @@ export class ArticleService {
 
     constructor(private http: HttpClient) { }
 
+    noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+
     postArticle(form) {
         console.log('article => ', form)
-        return this.http.post(environment.apiBaseUrl + '/createArticle', form);
+        return this.http.post(environment.apiBaseUrl + '/createArticle', form, this.noAuthHeader);
     }
 
 }

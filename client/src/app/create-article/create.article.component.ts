@@ -26,15 +26,16 @@ export class CreateArticleComponent implements OnInit {
     onSubmit(form: NgForm) {
         this.article.title = form.value.title;
         this.article.description = form.value.description;
-        this.articleService.postArticle(form.value).subscribe(res => {
+        this.articleService.postArticle(this.article).subscribe(res => {
             console.log(res)
             this.router.navigateByUrl('/userProfile');
         }, error => {
-            this.serverErrorMessages = error.error.message;
+            // this.serverErrorMessages = error.error.message;
         });
     }
 
     onInputFileChange(event) {
+        console.log(event.target.files[0])
         this.article.image = event.target.files[0];
         this.article.created = event.target.files[0].lastModifiedDate;
         this.article.updated = event.target.files[0].lastModifiedDate;
