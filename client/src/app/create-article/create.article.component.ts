@@ -24,7 +24,7 @@ export class CreateArticleComponent implements OnInit {
     ) { }
 
     ngOnInit() { }
-
+    // TODO: fix sending form data https://golosay.net/post-formdata-angular-2-with-data/
     onSubmit(form: NgForm) {
         this.article.title = form.value.title;
         this.article.description = form.value.description;
