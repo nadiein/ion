@@ -25,9 +25,12 @@
         <label class="validation-message">This field is required.</label>
     </div>
     <input
+        #fileUploadInput
         type="file"
-        name="image"
-        (change)="onInputFileChange($event)">
+        name="file"
+        accept="image/png,image/jpg,application/pdf"
+        [disabled]="isUploading"
+        (change)="uploadFile($event)">
     <button class="btn btn-primary">Save</button>
     <button class="btn btn-primary" routerLink="/userProfile">Back</button>
 </form>

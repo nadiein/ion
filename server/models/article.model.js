@@ -7,8 +7,7 @@ let ArticleSchema = new mongoose.Schema({
         unique: true
     },
     title: {
-        type: String,
-        required: 'Article title can\'t be empty'
+        type: String
     },
     description: {
         type: String,

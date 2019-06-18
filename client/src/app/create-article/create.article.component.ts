@@ -15,6 +15,8 @@ export class CreateArticleComponent implements OnInit {
     showSucessMessage: boolean;
     serverErrorMessages: string;
     article: Article = new Article();
+    isUploading: boolean;
+    errorMessage: any;
 
     constructor(
         private articleService: ArticleService,
@@ -26,7 +28,9 @@ export class CreateArticleComponent implements OnInit {
     onSubmit(form: NgForm) {
         this.article.title = form.value.title;
         this.article.description = form.value.description;
-        this.articleService.postArticle(this.article).subscribe(res => {
+        console.log('form => ', form)
+        // this.article.image = form.value;
+        this.articleService.uploadForm(this.article).subscribe(res => {
             console.log(res)
             this.router.navigateByUrl('/userProfile');
         }, error => {
@@ -34,11 +38,23 @@ export class CreateArticleComponent implements OnInit {
         });
     }
 
-    onInputFileChange(event) {
-        console.log(event.target.files[0])
-        this.article.image = event.target.files[0];
-        this.article.created = event.target.files[0].lastModifiedDate;
-        this.article.updated = event.target.files[0].lastModifiedDate;
+    uploadFile(event:any) {
+        if (event.target.files && event.target.files[0]) {
+            let file: File = event.target.files[0];
+            this.article.image = file;
+            this.isUploading = true;
+            this.errorMessage = null;
+            console.log('file=> ', file)
+            this.articleService.uploadFile(file).subscribe(res => {
+                this.isUploading = false;
+                console.log('res => ', res);
+                },
+                error => {
+                    this.isUploading = false;
+                    this.errorMessage = 'Error uploading file';
+                }
+            )
+        }
     }
 
 }
