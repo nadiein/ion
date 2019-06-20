@@ -1,19 +1,14 @@
 const mongoose = require('mongoose');
 
-let ArticleSchema = new mongoose.Schema({
+let PictureSchema = new mongoose.Schema({
     id: {
         type: Number,
         index: true,
         unique: true
     },
-    title: {
-        type: String
-    },
-    description: {
-        type: String,
-    },
     image: {
-        type: String,
+        binData: Buffer,
+        contentType: String
     },
     created: {
         type: Date,
@@ -25,4 +20,4 @@ let ArticleSchema = new mongoose.Schema({
     }
 });
 
-mongoose.model('Article', ArticleSchema);
+mongoose.model('Picture', PictureSchema);

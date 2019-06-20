@@ -24,15 +24,18 @@ export class CreateArticleComponent implements OnInit {
     ) { }
 
     ngOnInit() { }
-    // TODO: fix sending form data https://golosay.net/post-formdata-angular-2-with-data/
+
     onSubmit(form: NgForm) {
-        this.article.title = form.value.title;
-        this.article.description = form.value.description;
+        let formData:FormData = new FormData();
+        formData.append('title', form.value.title);
+        formData.append('description', form.value.description);
+        formData.append('image', this.article.image);
         console.log('form => ', form)
+        console.log('form data => ', formData)
         // this.article.image = form.value;
-        this.articleService.uploadForm(this.article).subscribe(res => {
+        this.articleService.uploadForm(formData).subscribe(res => {
             console.log(res)
-            this.router.navigateByUrl('/userProfile');
+            // this.router.navigateByUrl('/userProfile');
         }, error => {
             // this.serverErrorMessages = error.error.message;
         });
@@ -48,12 +51,11 @@ export class CreateArticleComponent implements OnInit {
             this.articleService.uploadFile(file).subscribe(res => {
                 this.isUploading = false;
                 console.log('res => ', res);
-                },
-                error => {
-                    this.isUploading = false;
-                    this.errorMessage = 'Error uploading file';
-                }
-            )
+            },
+            error => {
+                this.isUploading = false;
+                this.errorMessage = 'Error uploading file';
+            })
         }
     }
 

@@ -10,3 +10,4 @@ mongoose.connect(process.env.MONGODB_URI, (err) => {
 
 require('./user.model');
 require('./article.model');
+require('./picture.model');
