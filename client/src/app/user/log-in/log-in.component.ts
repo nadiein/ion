@@ -14,11 +14,11 @@ export class LogInComponent implements OnInit {
     showSucessMessage: boolean;
     serverErrorMessages: string;
 
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(public userService: UserService, private router: Router) {}
 
     ngOnInit() {
         if (this.userService.isLoggedIn()) {
-            this.router.navigateByUrl('/userProfile');
+            this.router.navigateByUrl('/users');
         }
     }
 
@@ -26,7 +26,7 @@ export class LogInComponent implements OnInit {
         this.userService.auth(form.value).subscribe(res => {
             console.log(res)
             this.userService.setToken(res['token']);
-            this.router.navigateByUrl('/userProfile');
+            this.router.navigateByUrl('/users');
         }, error => {
             this.serverErrorMessages = error.error.message;
         });

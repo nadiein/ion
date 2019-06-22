@@ -14,6 +14,6 @@ module.exports.createImage = (req, res, next) => {
         var uploadStatus = 'File Upload Failed';
     }
 
-    res.render('/createArticle', { status: uploadStatus, filename: `Name Of File: ${filename}` });
+    res.render('/articles', { status: uploadStatus, filename: `Name Of File: ${filename}` });
 
 }

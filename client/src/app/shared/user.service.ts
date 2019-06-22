@@ -28,11 +28,11 @@ export class UserService {
     }
 
     getUserProfile() {
-        return this.http.get(environment.apiBaseUrl + '/userProfile')
+        return this.http.get(environment.apiBaseUrl + '/users')
     }
 
     updateUserProfile(user: User) {
-        return this.http.put(environment.apiBaseUrl + '/updateProfile', user);
+        return this.http.put(environment.apiBaseUrl + '/users/update', user);
     }
 
     setToken(token: string) {
@@ -69,6 +69,6 @@ export class UserService {
     }
 
     getUser(token) {
-        return this.http.get(environment.apiBaseUrl + '/userProfile/', { headers: {Authorization: 'Bearer ' + token}});
+        return this.http.get(environment.apiBaseUrl + '/users/', { headers: {Authorization: 'Bearer ' + token}});
     }
 }

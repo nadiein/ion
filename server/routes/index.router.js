@@ -17,10 +17,11 @@ const upload = multer({ storage: storage });
 
 router.post('/register', ctrlUser.register);
 router.post('/authenticate', ctrlUser.authenticate);
-router.get('/userProfile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
-router.put('/updateProfile', ctrlUser.updateProfile);
+router.get('/users', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
+router.put('/users/update', ctrlUser.updateProfile);
 
-router.post('/createArticle', upload.fields([{ name: 'image', maxCount: 1 }]), ctrlArticle.createImage);
+router.post('/articles', upload.fields([{ name: 'image', maxCount: 1 }]), ctrlArticle.createArticle);
+router.get('/articles', ctrlArticle.getArticle);
 router.post('/pictures', upload.fields([{ name: 'image', maxCount: 1 }]), ctrlPicture.createImage);
 
 module.exports = router;

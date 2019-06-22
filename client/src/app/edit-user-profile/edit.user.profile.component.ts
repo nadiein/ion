@@ -16,7 +16,7 @@ export class EditUserProfileComponent implements OnInit {
     serverErrorMessages: string;
     userId: string;
 
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(public userService: UserService, private router: Router) {}
 
     ngOnInit() {
         if (this.userService.isLoggedIn()) {
@@ -30,7 +30,7 @@ export class EditUserProfileComponent implements OnInit {
         console.log('user update => ', userUpdate)
         this.userService.updateUserProfile(userUpdate).subscribe(res => {
             console.log(res)
-            this.router.navigateByUrl('/userProfile');
+            this.router.navigateByUrl('/users');
         }, error => {
             this.serverErrorMessages = error.error.message;
         });

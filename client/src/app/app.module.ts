@@ -14,6 +14,7 @@ import { LogInComponent } from './user/log-in/log-in.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit.user.profile.component';
 import { ArticlesComponent } from './articles/articles.component';
+import { ArticleComponent } from './articles/article/article.component';
 import { CreateArticleComponent } from './create-article/create.article.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 //routes
@@ -31,7 +32,8 @@ import { UserService } from './shared/user.service';
         UserProfileComponent,
         EditUserProfileComponent,
         CreateArticleComponent,
-        ArticlesComponent
+        ArticlesComponent,
+        ArticleComponent
     ],
     imports: [
         BrowserModule,

@@ -11,7 +11,7 @@ const rtsIndex = require('./routes/index.router');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 app.use(passport.initialize());
 app.use('/api', rtsIndex);

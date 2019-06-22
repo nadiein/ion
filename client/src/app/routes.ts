@@ -27,17 +27,17 @@ export const AppRoutes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'userProfile',
+        path: 'users',
         component: UserProfileComponent,
         canActivate: [AuthGuard]
     },
     {
-        path: 'updateProfile',
+        path: 'users/edit',
         component: EditUserProfileComponent,
         canActivate: [AuthGuard]
     },
     {
-        path: 'createArticle',
+        path: 'articles/create',
         component: CreateArticleComponent,
         canActivate: [AuthGuard]
     },
