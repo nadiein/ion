@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         cb(null, './uploads/')
     },
     filename: function (req, file, cb) {
-        cb(null, `${Math.floor((Math.random() * Math.pow(3,Math.pow(3,3))) + 1)}.${file.originalname.split(".")[1]}`); // modified here  or user file.mimetype
+        cb(null, `${Math.floor((Math.random() * Math.pow(3,Math.pow(3,3))) + 1)}.${file.originalname.split(".")[1].toLowerCase()}`); // modified here  or user file.mimetype
     }
 });
 const upload = multer({ storage: storage });

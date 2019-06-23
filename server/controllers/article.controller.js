@@ -16,6 +16,7 @@ module.exports.createArticle = (req, res, next) => {
         article.image.id = req.files['image'][0]['filename'].split('.')[0];
         article.image.data = buffer;
         article.image.contentType = req.files['image'][0]['mimetype'];
+        article.image.path = req.files['image'][0]['filename'];
         article.save(function(err,docs) {
             if (err) {
                 console.log(err);
@@ -29,7 +30,7 @@ module.exports.createArticle = (req, res, next) => {
 
 module.exports.getArticle = (req, res, next) => {
 
-    Article.find({}, ['title', 'description', 'image.id']).lean().exec(function (err, articles) {
+    Article.find({}, ['title', 'description', 'image.path']).lean().exec(function (err, articles) {
         res.send(JSON.stringify(articles, null, '\t'));
     });
 }

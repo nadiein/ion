@@ -10,6 +10,7 @@ const rtsIndex = require('./routes/index.router');
 
 const app = express();
 
+app.use('/pictures', express.static(__dirname + '/uploads'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());

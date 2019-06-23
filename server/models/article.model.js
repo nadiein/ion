@@ -14,6 +14,7 @@ let ArticleSchema = new mongoose.Schema({
     },
     image: {
         id: String,
+        path: String,
         contentType: String,
         data: Buffer
     },

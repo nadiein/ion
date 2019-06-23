@@ -36,7 +36,7 @@ export class ArticleService {
                     data.push(items[i])
                 }
                 return data.map(el => {
-                    return {title: el.title, description: el.description, image: el.image['id']}
+                    return {title: el.title, description: el.description, image: el.image['path']}
                 })
             })
         )
