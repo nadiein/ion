@@ -1,5 +1,12 @@
-<div>
-    <h2>{{article.title}}</h2>
-    <p>{{article.description}}</p>
-    <img [src]="'pictures/' + article.image" alt="Pic">
-</div>
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>{{article.title}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="'pictures/' + article.image" alt="Pic">
+    <mat-card-content>
+        <p>{{article.description}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>Back</button>
+    </mat-card-actions>
+</mat-card>
