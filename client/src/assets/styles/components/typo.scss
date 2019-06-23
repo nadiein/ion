@@ -1,0 +1,60 @@
+.section-title {
+    display: inline-block;
+    margin-bottom: 30px;
+    font: 700 normal em(22) $default-font-family;
+    text-transform: uppercase;
+    letter-spacing: -.02em;
+}
+
+*:focus {
+    outline: none;
+}
+
+//for FireFox
+::-moz-focus-inner, 
+::-moz-focus-outer {
+    border: 0;
+    outline: none;
+}
+
+h1, 
+.h1, 
+h2, 
+.h2, 
+h3, 
+.h3, 
+h4, 
+.h4, 
+h5, 
+.h5, 
+h6, 
+.h6 {
+    margin: 0;
+    font-weight: $default-font-weight;
+}
+
+a {
+    text-decoration: none;
+    transition: all .3s ease-out;
+    
+    &:focus,
+    &:active,
+    &:hover {
+        transition: all .3s ease-in;
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+
+        a {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}

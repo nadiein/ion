@@ -1,0 +1,61 @@
+//Inputs
+$input-holder-md: 50%;
+
+$form-control: 50px;
+$rounded-md: 4px;
+
+@include placeholder {
+    line-height: 1.92;
+    opacity: 1;
+    transition: opacity .3s ease;
+}
+
+input:focus,
+.form-control:focus {
+    outline: none;
+
+    @include placeholder {
+        opacity: 0;
+        transition: opacity .3s ease;
+    }
+}
+
+textarea {
+    resize: none;
+}
+
+input, 
+textarea {
+    text-overflow: ellipsis;
+}
+
+.input-holder {
+    position: relative;
+    transition: all .15s ease;
+}
+
+.form-control {
+    height: 40px;
+    padding: 0 35px 0 15px;
+    color: #ccc;
+    font-size: em(16);
+    font-weight: 500;
+    border: 0;
+    box-shadow: none;
+    line-height: 1.92;
+    margin-bottom: 20px;
+
+    &.rounded {
+        border-radius: $rounded-md;
+    }
+
+    &:focus, 
+    &:active {
+        box-shadow: none;
+        outline: 0;
+    }
+
+    @include placeholder {
+        color: #ccc;
+    }
+}

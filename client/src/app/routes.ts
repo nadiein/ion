@@ -43,8 +43,7 @@ export const AppRoutes: Routes = [
     },
     {
         path: 'articles',
-        component: ArticlesComponent,
-        canActivate: [AuthGuard]
+        component: ArticlesComponent
     },
     // {
     //     path: '**',

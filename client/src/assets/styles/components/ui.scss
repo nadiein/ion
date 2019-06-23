@@ -1,0 +1,80 @@
+//Main theme colors
+$primary-color: #232c64;
+$secondary-color: #fff;
+$success-color: #8fc73e;
+$info-color: #17a2b8;
+$warning-color: #ff4222;
+$danger-color: #dd2b4a;
+
+$ui-colors: (
+    primary: $primary-color,
+    secondary: $secondary-color,
+    success: $success-color,
+    info: $info-color,
+    warning: $warning-color,
+    danger: $danger-color
+);
+
+$section-bg: (
+    body: $secondary-color
+);
+
+//Fonts colors
+$color-secondary: $secondary-color !default;
+$color-inverse: #000 !default;
+
+$default-text-color: $primary-color;
+$text-color: #000;
+$section-title-color: $secondary-color;
+
+//Brand socials colors
+$facebook-color: #3b5998;
+$twitter-color: #1da1f2;
+$linkedin-color: #0077b5;
+$google-color: #ea4335;
+
+//Background classes
+@each $color, $value in $ui-colors {
+
+    .bg-#{$color} {
+        background: $value;
+
+        &:focus {
+            background: $value;
+        }
+    }
+}
+
+//Buttons variants
+// @each $color, $value in $ui-colors {
+
+//     .btn-#{$color} {
+//         @include button-variant($value, $value);
+//     }
+// }
+
+//Section backgrounds classes
+@each $name, $value in $section-bg {
+
+    .bg-#{$name} {
+        background: $value;
+    }
+}
+
+//Font color classes
+@each $color, $value in $ui-colors {
+
+    .color-#{$color} {
+        color: $value;
+    }
+}
+
+.ico-pic {
+    position: relative;
+
+    @include pseudo-el(before, auto, auto) {
+        top: 50%;
+        left: -50px;
+        transform: translateY(-50%);
+    }
+}

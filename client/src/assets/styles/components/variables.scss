@@ -1,0 +1,62 @@
+//Fonts routes
+$path-fonts: '../fonts/';
+$path-images: '../images/';
+
+//Variables
+$default-row-gap: -15px;
+$row-gap: 30px;
+$default-col-gap: 15px;
+$col-gap: 30px;
+
+//fonts
+$font: 'Times New Roman';
+
+$default-font-family: $font, sans-serif;
+
+$default-font-size: 16px;
+$default-font-weight: 400;
+$default-line-height: 1;
+
+$brand-letter-space: -.02em;
+
+//Pics
+
+//Container
+$containerOffsetX: 35px;
+$containerOffsetXTablet: 25px;
+$containerOffsetXMobile: 15px;
+$containerWidth: 1212px;
+$containerSmallWidth: 991px;
+$containerXSmallWidth: 767px;
+
+//Extend
+%pseudos {
+    position: absolute;
+    display: block;
+    content: '';
+}
+
+%marginCenter {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+%absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+%absCenterY {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+%absCenterX {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -1,0 +1,36 @@
+.btn {
+    font-size: em(18);
+    font-weight: 500;
+    letter-spacing: -.02em;
+    transition: all .15s ease;
+    cursor: pointer;
+    z-index: 99;
+
+    &:focus,
+    &:active,
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.btn-link {
+    min-width: auto;
+    border-radius: 0;
+    border-width: 0;
+    padding: 0;
+    letter-spacing: -.01em;
+    text-transform: none;
+
+    &:before {
+        cursor: pointer;
+    }
+
+    &:hover {
+        opacity: .75;
+    }
+}
+
+.btn-md {
+    // @include button-size(10px 0, 10px 0, em(18, 18), 1, 0);
+    min-width: 100%;
+}

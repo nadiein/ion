@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from './material.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 // components
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -41,7 +44,9 @@ import { UserService } from './shared/user.service';
         FormsModule,
         RouterModule.forRoot(AppRoutes),
         HttpClientModule,
-        MaterialModule
+        MaterialModule,
+        FontAwesomeModule,
+        FlexLayoutModule
     ],
     providers: [
         {

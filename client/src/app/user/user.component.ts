@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: "app-user",
@@ -6,6 +7,8 @@ import { Component } from "@angular/core";
     styleUrls: ["./user.component.css"]
 })
 export class UserComponent {
+
+    faLongArrowAltLeft = faLongArrowAltLeft;
 
     constructor() { }
 }
