@@ -34,3 +34,7 @@ module.exports.getArticle = (req, res, next) => {
         res.send(JSON.stringify(articles, null, '\t'));
     });
 }
+
+// TODO: get article by id
+// TODO: edit article
+// TODO: delete article
