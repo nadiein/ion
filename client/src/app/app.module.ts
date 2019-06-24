@@ -25,6 +25,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AppRoutes } from './routes';
 //services
 import { UserService } from './shared/user.service';
+import { SingleArticleComponent } from './single-article/single.article.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { UserService } from './shared/user.service';
         EditUserProfileComponent,
         CreateArticleComponent,
         ArticlesComponent,
-        ArticleComponent
+        ArticleComponent,
+        SingleArticleComponent
     ],
     imports: [
         BrowserModule,

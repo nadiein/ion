@@ -8,6 +8,7 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { LogInComponent } from './user/log-in/log-in.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ArticlesComponent } from './articles/articles.component';
+import { SingleArticleComponent } from './single-article/single.article.component';
 
 export const AppRoutes: Routes = [
     {
@@ -45,6 +46,10 @@ export const AppRoutes: Routes = [
         path: 'articles',
         component: ArticlesComponent
     },
+    {
+        path: 'articles/id',
+        component: SingleArticleComponent
+    }
     // {
     //     path: '**',
     //     component: PagenotfoundComponent
