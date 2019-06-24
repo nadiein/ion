@@ -50,3 +50,7 @@ export class ArticleService {
     }
 
 }
+
+// TODO: get article by id
+// TODO: edit article
+// TODO: delete article
