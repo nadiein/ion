@@ -47,7 +47,7 @@ export const AppRoutes: Routes = [
         component: ArticlesComponent
     },
     {
-        path: 'articles/id',
+        path: 'articles/:id',
         component: SingleArticleComponent
     }
     // {

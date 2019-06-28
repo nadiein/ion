@@ -36,8 +36,17 @@ export class ArticleService {
                     data.push(items[i])
                 }
                 return data.map(el => {
-                    return {title: el.title, description: el.description, image: el.image['path']}
+                    return {id: el.id, title: el.title, description: el.description, image: el.image['path']}
                 })
+            })
+        )
+    }
+
+    getArticle(id:number):Observable<Article> {
+        let headers = new HttpHeaders({'Accept':'text/plain'});
+        return this.http.get(environment.apiBaseUrl + '/articles/' + id , { headers, responseType: "json" }).pipe(
+            map(items => {
+                return {id: items[0].id, title: items[0].title, description: items[0].description, image: items[0].image['path']}
             })
         )
     }

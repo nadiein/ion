@@ -1,11 +1,11 @@
 <div
-    routerLink="/articles/id"
     fxLayout="row wrap"
     fxLayoutGap="20px grid">
     <article
         *ngFor="let article of articles"
+        fxLayout="column"
         [article]="article"
-        fxLayout="column">
+        [routerLink]="['/articles/', article.id]">
     </article>
 </div>
 

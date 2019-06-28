@@ -28,13 +28,18 @@ module.exports.createArticle = (req, res, next) => {
 
 }
 
-module.exports.getArticle = (req, res, next) => {
+module.exports.getArticles = (req, res, next) => {
 
-    Article.find({}, ['title', 'description', 'image.path']).lean().exec(function (err, articles) {
+    Article.find({}, ['id', 'title', 'description', 'image.path']).lean().exec(function (err, articles) {
         res.send(JSON.stringify(articles, null, '\t'));
     });
 }
 
 // TODO: get article by id
+module.exports.getArticle = (req, res, next) => {
+    Article.find({id: req.params.id}, ['id', 'title', 'description', 'image.path']).lean().exec(function (err, article) {
+        res.send(JSON.stringify(article, null, '\t'));
+    });
+}
 // TODO: edit article
 // TODO: delete article

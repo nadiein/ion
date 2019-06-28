@@ -1,3 +1,44 @@
-<p>
-    single.article works!
-</p>
+<mat-card
+    class="card-holder">
+    <mat-card-header>
+        <mat-card-title *ngIf="!editMode">{{article.title}}</mat-card-title>
+        <input
+            *ngIf="editMode"
+            [placeholder]="article.title">
+    </mat-card-header>
+    <div class="card-image-holder">
+        <img
+            mat-card-image
+            [src]="'pictures/' + article.image"
+            alt="Pic"
+            (click)="onArticleImageUpload()">
+        <fa-icon
+            *ngIf="editMode"
+            class="icon-upload"
+            [icon]="faCloudUploadAlt"></fa-icon>
+    </div>
+    <mat-card-content>
+        <p *ngIf="!editMode">{{article.description}}</p>
+        <textarea
+            *ngIf="editMode"
+            placeholder="Leave a comment"></textarea>
+    </mat-card-content>
+    <mat-card-actions fxLayout="row wrap">
+        <button
+            *ngIf="!editMode"
+            mat-button
+            (click)="onArticleEdit()">Edit</button>
+        <button
+            *ngIf="editMode"
+            mat-button
+            (click)="onArticleChangesSave()">Save</button>
+        <button
+            *ngIf="!editMode"
+            mat-button
+            (click)="onArticleDelete()">Delete</button>
+        <button
+            *ngIf="!editMode"
+            mat-button
+            routerLink="/articles">Back</button>
+    </mat-card-actions>
+</mat-card>
