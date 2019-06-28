@@ -1,0 +1,6 @@
+<button
+    *ngIf="button.visibility"
+    class="m-r-10"
+    mat-flat-button
+    [color]="button.color.toLowerCase()"
+    (click)="onButtonClickEvent(button)">{{button.label}}</button>

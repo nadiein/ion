@@ -1,44 +1,45 @@
 <mat-card
     class="card-holder">
-    <mat-card-header>
-        <mat-card-title *ngIf="!editMode">{{article.title}}</mat-card-title>
+    <div class="m-b-30">
+        <h2 *ngIf="!editMode">{{article.title}}</h2>
         <input
             *ngIf="editMode"
-            [placeholder]="article.title">
-    </mat-card-header>
+            class="form-control"
+            [value]="article.title">
+    </div>
     <div class="card-image-holder">
         <img
             mat-card-image
             [src]="'pictures/' + article.image"
-            alt="Pic"
-            (click)="onArticleImageUpload()">
-        <fa-icon
-            *ngIf="editMode"
-            class="icon-upload"
-            [icon]="faCloudUploadAlt"></fa-icon>
+            alt="Pic">
+        <div *ngIf="editMode">
+            <button
+                mat-fab
+                color="accent"
+                class="button-upload">
+                <fa-icon
+                    [icon]="faCloudUploadAlt"></fa-icon>
+            </button>
+            <input
+                #fileUploadInput
+                type="file"
+                name="file"
+                class="form-control-upload"
+                accept="image/png,image/jpg,application/pdf"
+                (change)="onArticleImageUpload()">
+        </div>
     </div>
     <mat-card-content>
         <p *ngIf="!editMode">{{article.description}}</p>
         <textarea
             *ngIf="editMode"
-            placeholder="Leave a comment"></textarea>
+            class="form-control-text form-control-text-md"
+            [value]="article.description"></textarea>
     </mat-card-content>
     <mat-card-actions fxLayout="row wrap">
-        <button
-            *ngIf="!editMode"
-            mat-button
-            (click)="onArticleEdit()">Edit</button>
-        <button
-            *ngIf="editMode"
-            mat-button
-            (click)="onArticleChangesSave()">Save</button>
-        <button
-            *ngIf="!editMode"
-            mat-button
-            (click)="onArticleDelete()">Delete</button>
-        <button
-            *ngIf="!editMode"
-            mat-button
-            routerLink="/articles">Back</button>
+        <button-element 
+            *ngFor="let button of buttons"
+            [button]="button"
+            (buttonEvent)="onDispatchButtonEvent($event)"></button-element>
     </mat-card-actions>
 </mat-card>

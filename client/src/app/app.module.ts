@@ -26,6 +26,7 @@ import { AppRoutes } from './routes';
 //services
 import { UserService } from './shared/user.service';
 import { SingleArticleComponent } from './single-article/single.article.component';
+import { ButtonElementComponent } from './single-article/button-element/button-element.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { SingleArticleComponent } from './single-article/single.article.componen
         CreateArticleComponent,
         ArticlesComponent,
         ArticleComponent,
-        SingleArticleComponent
+        SingleArticleComponent,
+        ButtonElementComponent
     ],
     imports: [
         BrowserModule,
