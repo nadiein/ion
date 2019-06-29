@@ -35,11 +35,20 @@ module.exports.getArticles = (req, res, next) => {
     });
 }
 
-// TODO: get article by id
 module.exports.getArticle = (req, res, next) => {
     Article.find({id: req.params.id}, ['id', 'title', 'description', 'image.path']).lean().exec(function (err, article) {
         res.send(JSON.stringify(article, null, '\t'));
     });
 }
+
+module.exports.deleteArticle = (req, res, next) => {
+    Article.find({id: req.params.id}).remove().exec(function (err) {
+        if (!err) {
+            res.send('DELETED');
+        } else {
+            res.send(err);
+        }
+    });
+}
+
 // TODO: edit article
-// TODO: delete article

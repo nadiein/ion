@@ -21,12 +21,14 @@ import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './articles/article/article.component';
 import { CreateArticleComponent } from './create-article/create.article.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { SingleArticleComponent } from './single-article/single.article.component';
+import { ButtonElementComponent } from './single-article/button-element/button-element.component';
+import { ConfirmComponent } from './services/confirm.component';
 //routes
 import { AppRoutes } from './routes';
 //services
 import { UserService } from './shared/user.service';
-import { SingleArticleComponent } from './single-article/single.article.component';
-import { ButtonElementComponent } from './single-article/button-element/button-element.component';
+import { ConfirmService } from './services/confirm.service';
 
 @NgModule({
     declarations: [
@@ -41,7 +43,8 @@ import { ButtonElementComponent } from './single-article/button-element/button-e
         ArticlesComponent,
         ArticleComponent,
         SingleArticleComponent,
-        ButtonElementComponent
+        ButtonElementComponent,
+        ConfirmComponent
     ],
     imports: [
         BrowserModule,
@@ -59,7 +62,8 @@ import { ButtonElementComponent } from './single-article/button-element/button-e
             multi: true
         },
         AuthGuard,
-        UserService
+        UserService,
+        ConfirmService
     ],
     bootstrap: [
         AppComponent

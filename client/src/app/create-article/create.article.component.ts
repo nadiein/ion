@@ -33,7 +33,7 @@ export class CreateArticleComponent implements OnInit {
         // this.article.image = form.value;
         this.articleService.uploadForm(formData).subscribe(res => {
             console.log(res)
-            this.router.navigateByUrl('/users');
+            this.router.navigateByUrl('/articles');
         }, error => {
             // this.serverErrorMessages = error.error.message;
         });

@@ -1,0 +1,12 @@
+<div *ngIf="visible" class="container">
+    <div class="panel"  style="position: relative;">
+        <div class="closeIcon">
+            <i class="far fa-window-close" (click)="close()"></i>
+        </div>
+        <div id="title" *ngIf="message.title"><strong>{{message.title}}</strong></div>
+        <div class="message" [innerHtml]="message.text"></div>
+        <div id="buttonsContainer">
+            <button class="actionButtonBlue small btn" *ngFor="let btn of buttons" (click)="onButtonClick(btn)">{{btn.label}}</button>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/shared/article.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Article } from '../shared/article.model';
 import { faCloudUploadAlt} from '@fortawesome/free-solid-svg-icons';
 import { ButtonVo, ButtonKind, ButtonColor } from './button-element/button-element.component';
+import { ConfirmService } from '../services/confirm.service';
+import { ConfirmButton } from '../services/confirm.message';
 
 @Component({
     selector: 'single-article',
@@ -15,6 +17,7 @@ export class SingleArticleComponent implements OnInit {
 
     sub: Subscription;
     article: Article = new Article();
+    articleId: number;
     editMode: boolean;
     faCloudUploadAlt = faCloudUploadAlt;
     buttons: ButtonVo[];
@@ -22,13 +25,14 @@ export class SingleArticleComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public articleService: ArticleService
+        public articleService: ArticleService,
+        public confirmService: ConfirmService
     ) { }
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
-            const id = params['id'];
-            this.articleService.getArticle(id).subscribe(res => {
+            this.articleId = params['id'];
+            this.articleService.getArticle(this.articleId).subscribe(res => {
                 console.log('res => ', res)
                 Object.assign(this.article, res);
             });
@@ -51,6 +55,7 @@ export class SingleArticleComponent implements OnInit {
             console.log('save event => ');
         } else if (button.kind == ButtonKind.Delete) {
             console.log('delete event => ');
+            this.deleteArticle(this.articleId);
         } else if (button.kind == ButtonKind.Cancel) {
             this.editMode = false;
         }
@@ -69,6 +74,21 @@ export class SingleArticleComponent implements OnInit {
             })
         }
 
+    }
+
+    deleteArticle(id) {
+        this.confirmService.warning(
+            'Are you sure u wanna delete this Article?',
+            [new ConfirmButton('Yes, i\'m totaly sure', () => {
+                this.articleService.deleteArticle(this.articleId).subscribe(res => {
+                    console.log('res');
+                    this.router.navigateByUrl('/articles');
+                }, err => {
+                    this.confirmService.warning(err)
+                });
+                return null;
+            }),
+            new ConfirmButton('Give me a sec, i\'ll ask my mom', null)]);
     }
 
     onArticleImageUpload() {

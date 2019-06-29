@@ -51,6 +51,11 @@ export class ArticleService {
         )
     }
 
+    deleteArticle(id: number): Observable<any> {
+        let headers = new HttpHeaders({'Accept':'text/plain'});
+        return this.http.delete(environment.apiBaseUrl + '/articles/' + id, { headers, responseType: "text" });
+    }
+
     uploadFile(file:File):Observable<string> {
         let formData:FormData = new FormData();
         formData.append('file', file);
@@ -62,4 +67,3 @@ export class ArticleService {
 
 // TODO: get article by id
 // TODO: edit article
-// TODO: delete article
