@@ -53,6 +53,7 @@ export class SingleArticleComponent implements OnInit {
             this.buttons.find(button => button.kind == ButtonKind.Delete).visibility = false;
         } else if (button.kind == ButtonKind.Save) {
             console.log('save event => ');
+            this.updateArticle(this.article);
         } else if (button.kind == ButtonKind.Delete) {
             console.log('delete event => ');
             this.deleteArticle(this.articleId);
@@ -74,6 +75,13 @@ export class SingleArticleComponent implements OnInit {
             })
         }
 
+    }
+
+    updateArticle(article:Article) {
+        console.log('update => ', article);
+        this.articleService.updateArticle(article).subscribe(res => {
+            console.log('update res => ', res)
+        })
     }
 
     deleteArticle(id) {

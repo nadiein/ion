@@ -20,16 +20,14 @@ export class ArticleService {
         }
     };
 
-    noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
-
     uploadForm(article):Observable<string> {
         let headers = new HttpHeaders({'Accept':'multipart/form-data'});
-        return this.http.post(environment.apiBaseUrl + '/articles', article, {headers, responseType:"text"});
+        return this.http.post(environment.apiBaseUrl + '/articles', article, {headers, responseType:'text'});
     }
 
     getArticles():Observable<Article[]> {
         let headers = new HttpHeaders({'Accept':'text/plain'});
-        return this.http.get(environment.apiBaseUrl + '/articles', { headers, responseType: "json" }).pipe(
+        return this.http.get(environment.apiBaseUrl + '/articles', { headers, responseType: 'json' }).pipe(
             map(items => {
                 let data = [];
                 for (let i in items) {
@@ -44,7 +42,7 @@ export class ArticleService {
 
     getArticle(id:number):Observable<Article> {
         let headers = new HttpHeaders({'Accept':'text/plain'});
-        return this.http.get(environment.apiBaseUrl + '/articles/' + id , { headers, responseType: "json" }).pipe(
+        return this.http.get(environment.apiBaseUrl + '/articles/' + id , { headers, responseType: 'json' }).pipe(
             map(items => {
                 return {id: items[0].id, title: items[0].title, description: items[0].description, image: items[0].image['path']}
             })
@@ -53,14 +51,23 @@ export class ArticleService {
 
     deleteArticle(id: number): Observable<any> {
         let headers = new HttpHeaders({'Accept':'text/plain'});
-        return this.http.delete(environment.apiBaseUrl + '/articles/' + id, { headers, responseType: "text" });
+        return this.http.delete(environment.apiBaseUrl + '/articles/' + id, { headers, responseType: 'text' });
+    }
+
+    updateArticle(article: Article): Observable<Article> {
+        let headers = new HttpHeaders({'Accept':'multipart/form-data'});
+        return this.http.put(environment.apiBaseUrl + '/articles/' + article.id, article, { headers, responseType: 'json' }).pipe(
+            map(items => {
+                return {id: items[0].id, title: items[0].title, description: items[0].description, image: items[0].image['path']}
+            })
+        )
     }
 
     uploadFile(file:File):Observable<string> {
         let formData:FormData = new FormData();
         formData.append('file', file);
         let headers = new HttpHeaders({'Accept':'text/plain'});
-        return this.http.post(environment.apiBaseUrl + '/pictures', formData, {headers, responseType:"text"});
+        return this.http.post(environment.apiBaseUrl + '/pictures', formData, {headers, responseType: 'text'});
     }
 
 }

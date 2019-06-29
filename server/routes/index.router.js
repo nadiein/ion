@@ -23,6 +23,7 @@ router.put('/users/update', ctrlUser.updateProfile);
 router.post('/articles', upload.fields([{ name: 'image', maxCount: 1 }]), ctrlArticle.createArticle);
 router.get('/articles', ctrlArticle.getArticles);
 router.get('/articles/:id', ctrlArticle.getArticle);
+router.put('/articles/:id', upload.fields([{ name: 'image', maxCount: 1 }]), ctrlArticle.updateArticle);
 router.delete('/articles/:id', ctrlArticle.deleteArticle);
 router.post('/pictures', upload.fields([{ name: 'image', maxCount: 1 }]), ctrlPicture.createImage);
 
