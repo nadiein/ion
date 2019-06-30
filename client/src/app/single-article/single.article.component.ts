@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/shared/article.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
-import { Article } from '../shared/article.model';
+import { Article, ArticleModel } from '../shared/article.model';
 import { faCloudUploadAlt} from '@fortawesome/free-solid-svg-icons';
 import { ButtonVo, ButtonKind, ButtonColor } from './button-element/button-element.component';
 import { ConfirmService } from '../services/confirm.service';
@@ -17,8 +17,11 @@ export class SingleArticleComponent implements OnInit {
 
     sub: Subscription;
     article: Article = new Article();
+    articleDto: ArticleModel = new ArticleModel();
     articleId: number;
     editMode: boolean;
+    isUploading: boolean;
+    errorMessage: any;
     faCloudUploadAlt = faCloudUploadAlt;
     buttons: ButtonVo[];
 
@@ -54,6 +57,7 @@ export class SingleArticleComponent implements OnInit {
         } else if (button.kind == ButtonKind.Save) {
             console.log('save event => ');
             this.updateArticle(this.article);
+            this.editMode = false;
         } else if (button.kind == ButtonKind.Delete) {
             console.log('delete event => ');
             this.deleteArticle(this.articleId);
@@ -79,8 +83,16 @@ export class SingleArticleComponent implements OnInit {
 
     updateArticle(article:Article) {
         console.log('update => ', article);
-        this.articleService.updateArticle(article).subscribe(res => {
+        this.toDto(article);
+        let formData:FormData = new FormData();
+        formData.append('id', String(this.articleDto.id));
+        formData.append('title', this.articleDto.title);
+        formData.append('description', this.articleDto.description);
+        this.articleDto.image ? formData.append('image', this.articleDto.image) : null;
+        this.articleService.updateArticle(formData).subscribe(res => {
             console.log('update res => ', res)
+            // this.router.navigateByUrl('/articles/' + res.id);
+
         })
     }
 
@@ -99,8 +111,29 @@ export class SingleArticleComponent implements OnInit {
             new ConfirmButton('Give me a sec, i\'ll ask my mom', null)]);
     }
 
-    onArticleImageUpload() {
+    onArticleImageUpload(event:any) {
         console.log('upload article image => ')
+        if (event.target.files && event.target.files[0]) {
+            let file: File = event.target.files[0];
+            this.articleDto.image = file;
+            this.isUploading = true;
+            this.errorMessage = null;
+            
+            this.articleService.uploadFile(file).subscribe(res => {
+                this.isUploading = false;
+                console.log('res => ', res);
+            },
+            error => {
+                this.isUploading = false;
+                this.errorMessage = 'Error uploading file';
+            })
+        }
+    }
+
+    toDto(article: Article) {
+        this.articleDto.id = this.articleId;
+        this.articleDto.title = article.title;
+        this.articleDto.description = article.description;
     }
 
 }

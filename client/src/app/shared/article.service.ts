@@ -54,10 +54,11 @@ export class ArticleService {
         return this.http.delete(environment.apiBaseUrl + '/articles/' + id, { headers, responseType: 'text' });
     }
 
-    updateArticle(article: Article): Observable<Article> {
+    updateArticle(article): Observable<Article> {
         let headers = new HttpHeaders({'Accept':'multipart/form-data'});
-        return this.http.put(environment.apiBaseUrl + '/articles/' + article.id, article, { headers, responseType: 'json' }).pipe(
+        return this.http.put(environment.apiBaseUrl + '/articles/' + article.get('id'), article, { headers, responseType: 'json' }).pipe(
             map(items => {
+                console.log('res update => ', items)
                 return {id: items[0].id, title: items[0].title, description: items[0].description, image: items[0].image['path']}
             })
         )
