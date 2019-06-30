@@ -4,8 +4,14 @@
         <h2 *ngIf="!editMode">{{article.title}}</h2>
         <input
             *ngIf="editMode"
-            class="form-control"
-            [value]="article.title">
+            #title="ngModel"
+            type="text"
+            name="title"
+            [(ngModel)]="article.title"
+            [value]="article.title"
+            placeholder="Title"
+            required 
+            class="form-control">
     </div>
     <div class="card-image-holder">
         <img
@@ -33,6 +39,12 @@
         <p *ngIf="!editMode">{{article.description}}</p>
         <textarea
             *ngIf="editMode"
+            type="text"
+            #description="ngModel"
+            [(ngModel)]="article.description"
+            name="description"
+            placeholder="Description"
+            required 
             class="form-control-text form-control-text-md"
             [value]="article.description"></textarea>
     </mat-card-content>
