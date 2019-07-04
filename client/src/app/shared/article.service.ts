@@ -34,7 +34,14 @@ export class ArticleService {
                     data.push(items[i])
                 }
                 return data.map(el => {
-                    return {id: el.id, title: el.title, description: el.description, image: el.image['path']}
+                    return {
+                        id: el.id, 
+                        title: el.title, 
+                        description: el.description,
+                        image: el.image['path'],
+                        created: el.created,
+                        updated: el.updated
+                    }
                 })
             })
         )
@@ -44,7 +51,14 @@ export class ArticleService {
         let headers = new HttpHeaders({'Accept':'text/plain'});
         return this.http.get(environment.apiBaseUrl + '/articles/' + id , { headers, responseType: 'json' }).pipe(
             map(items => {
-                return {id: items[0].id, title: items[0].title, description: items[0].description, image: items[0].image['path']}
+                return {
+                    id: items[0]['id'],
+                    title: items[0]['title'],
+                    description: items[0]['description'],
+                    image: items[0]['image']['path'],
+                    created: items[0]['created'],
+                    updated: items[0]['updated']
+                }
             })
         )
     }
@@ -58,8 +72,14 @@ export class ArticleService {
         let headers = new HttpHeaders({'Accept':'multipart/form-data'});
         return this.http.put(environment.apiBaseUrl + '/articles/' + article.get('id'), article, { headers, responseType: 'json' }).pipe(
             map(items => {
-                console.log('res update => ', items)
-                return {id: items[0].id, title: items[0].title, description: items[0].description, image: items[0].image['path']}
+                return {
+                    id: items['id'],
+                    title: items['title'],
+                    description: items['description'],
+                    image: items['image']['path'],
+                    created: items['created'],
+                    updated: items['updated']
+                }
             })
         )
     }

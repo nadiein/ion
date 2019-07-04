@@ -47,6 +47,10 @@
             required 
             class="form-control-text form-control-text-md"
             [value]="article.description"></textarea>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+            <span>Created: {{articleCreatedDate}}</span>
+            <span>Updated: {{articleUpdatedDate}}</span>
+        </div>
     </mat-card-content>
     <mat-card-actions fxLayout="row wrap">
         <button-element 
@@ -56,5 +60,5 @@
     </mat-card-actions>
 </mat-card>
 <div fxLayout="row wrap" fxLayoutAlign="flex-end" class="m-t-15 m-r-15"> 
-    <button d mat-flat-button color="primary" routerLink="/users">Back</button>
+    <button mat-flat-button color="primary" routerLink="/articles">Articles</button>
 </div>

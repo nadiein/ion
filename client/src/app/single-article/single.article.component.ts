@@ -32,6 +32,14 @@ export class SingleArticleComponent implements OnInit {
         public confirmService: ConfirmService
     ) { }
 
+    get articleCreatedDate() {
+        return this.article && this.article.created ? new Date(this.article.created).toLocaleString() : null;
+    }
+
+    get articleUpdatedDate() {
+        return this.article && this.article.updated ? new Date(this.article.updated).toLocaleString() : null;
+    }
+
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
             this.articleId = params['id'];
@@ -82,18 +90,13 @@ export class SingleArticleComponent implements OnInit {
     }
 
     updateArticle(article:Article) {
-        console.log('update => ', article);
         this.toDto(article);
         let formData:FormData = new FormData();
         formData.append('id', String(this.articleDto.id));
         formData.append('title', this.articleDto.title);
         formData.append('description', this.articleDto.description);
         this.articleDto.image ? formData.append('image', this.articleDto.image) : null;
-        this.articleService.updateArticle(formData).subscribe(res => {
-            console.log('update res => ', res)
-            // this.router.navigateByUrl('/articles/' + res.id);
-
-        })
+        this.articleService.updateArticle(formData).subscribe();
     }
 
     deleteArticle(id) {

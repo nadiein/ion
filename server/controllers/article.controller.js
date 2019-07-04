@@ -30,13 +30,13 @@ module.exports.createArticle = (req, res, next) => {
 
 module.exports.getArticles = (req, res, next) => {
 
-    Article.find({}, ['id', 'title', 'description', 'image.path']).lean().exec((err, articles) => {
+    Article.find({}, ['id', 'title', 'description', 'image.path', 'created', 'updated']).lean().exec((err, articles) => {
         res.send(JSON.stringify(articles, null, '\t'));
     });
 }
 
 module.exports.getArticle = (req, res, next) => {
-    Article.find({id: req.params.id}, ['id', 'title', 'description', 'image.path']).lean().exec((err, article) => {
+    Article.find({id: req.params.id}, ['id', 'title', 'description', 'image.path', 'created', 'updated']).lean().exec((err, article) => {
         res.send(JSON.stringify(article, null, '\t'));
     });
 }
@@ -48,12 +48,12 @@ module.exports.updateArticle = (req, res, next) => {
     // If req body contains elements > 1 then article was updated and push updated date to db
     if (Object.keys(req.body).length > 0) articleDto.updated = new Date();
     // push in additional dto class by one needs in cases when was updated only one field
-    if (req.body.title) articleDto.id = req.body.id;
-    if (req.body.title) articleDto.title = req.body.title;
-    if (req.body.description) articleDto.title = req.body.title;
-    if (req.body.title) articleDto.title = req.body.title;
-    
-    if (req.files) {
+    articleDto.id = req.body.id;
+    articleDto.title = req.body.title;
+    articleDto.description = req.body.description;
+
+    if (Object.entries(req.files).length) {
+        console.log(1)
         let buffer = Buffer.from(JSON.stringify(req.files['image'], null, '\t'));
         articleDto.image = {};
         articleDto.image['id'] = req.files['image'][0]['filename'].split('.')[0];
@@ -63,18 +63,12 @@ module.exports.updateArticle = (req, res, next) => {
     }
 
     articleDto = { $set: articleDto };
-    // Find by id and update meth. works but should pass ObjectId: _id - 2 ways:
-    // Pass everywhere _id not id or clue about more solution
-    Article.update({ id: req.body.id }, articleDto, {new: true}, (err, doc) => {
+
+    Article.findOneAndUpdate({ id: req.body.id }, articleDto, {'fields': ['id', 'title', 'description', 'image.path', 'created', 'updated'], new: true, upsert: true, setDefaultsOnInsert: true}, (err, article) => {
         if (err) { return res.status(500).send(err); }
         res.send(JSON.stringify(article, null, '\t'));
     });
-    // Article.findOne({ id: req.body.id }, (err, article) => {
-    //     article.save((err, doc) => {
-    //         if (err) { return res.status(500).send(err); }
-    //         res.json(doc);
-    //     });
-    // });
+
 }
 
 module.exports.deleteArticle = (req, res, next) => {

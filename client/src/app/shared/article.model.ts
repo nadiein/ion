@@ -3,8 +3,6 @@ export class ArticleModel {
     title: string = '';
     description: string = '';
     image: File = null;
-    created: any = '';
-    updated: any = '';
 }
 
 export class Article {
@@ -12,4 +10,6 @@ export class Article {
     title: string;
     description: string;
     image: string;
+    created: string;
+    updated: string;
 }
