@@ -1,3 +1,7 @@
+// TODO move to Deno.js with TS support
+// TODO GET for pictures Schema
+// ??? decide move to graphQl from REST or not
+
 require('./config/config');
 require('./models/db');
 require('./config/passportConfig');
