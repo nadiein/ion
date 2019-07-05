@@ -138,5 +138,9 @@ export class SingleArticleComponent implements OnInit {
         this.articleDto.title = article.title;
         this.articleDto.description = article.description;
     }
+  
+  // TODO dbl click editing
+  // TODO keyboard editing events ESC, Enter etc
+  // TODO PATCH single edited article field
 
 }
