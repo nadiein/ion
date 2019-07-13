@@ -25,7 +25,7 @@ userSchema.path('email').validate((val) => {
     return emailRegex.test(val);
 }, 'Invalid e-mail.');
 
-userSchema.pre('save', (next) => {
+userSchema.pre('save', function (next) {
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(this.password, salt, (err, hash) => {
             this.password = hash;
@@ -35,11 +35,11 @@ userSchema.pre('save', (next) => {
     });
 });
 
-userSchema.methods.verifyPassword = (password) => {
+userSchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-userSchema.methods.generateJwt = () => {
+userSchema.methods.generateJwt = function () {
     return jwt.sign({ _id: this._id},
         process.env.JWT_SECRET,
     {
